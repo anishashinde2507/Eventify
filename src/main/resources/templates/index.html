@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Hero Section</title>
+    <style>
+        /* Custom Styles for Hero Section */
+        .hero-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .hero-section {
+            background-color: #333;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 1.25rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .hero-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/allevents}" href="#">Events</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">Logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="nav-link" th:text="${cartCount}">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 id="hero-heading" class="hero-heading">Your Gateway to Memorable Events!</h1>
+        <p class="text-white mt-4 text-lg">Plan, manage, and enjoy your events with ease and style.</p>
+        <a href="/allevents" class="hero-button">Explore Events</a>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+    // Typing animation for hero heading
+    document.addEventListener('DOMContentLoaded', function () {
+        const fullText = "Your Gateway to Memorable Events!!!"; // Full text to be typed
+        let currentIndex = 0; // Start from the first character
+        const heroHeading = document.getElementById('hero-heading');
+        
+        // Reset the heading text before typing
+        heroHeading.textContent = "";
+
+        // Typing function
+        function typeText() {
+            if (currentIndex < fullText.length) {
+                heroHeading.textContent += fullText[currentIndex]; // Append one character at a time
+                currentIndex++; // Move to the next character
+            }
+        }
+
+        // Start typing the text at a specified interval (typing speed of 100ms)
+        const typingInterval = setInterval(typeText, 100);
+
+        // Once the typing is complete, clear the interval to stop typing
+        setTimeout(() => {
+            clearInterval(typingInterval);
+        }, fullText.length * 100); // Stop typing after the full text is typed
+    });
+</script>
+
+</body>
+</html>
