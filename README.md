@@ -35,10 +35,3 @@ A full-stack Event Management web application built with **Spring Boot (Java)** 
 
 ```bash
 git clone https://github.com/anishashinde2507/Eventify.git
-
-
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
